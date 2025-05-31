@@ -11,7 +11,10 @@
   "host_network": true,
   "privileged": true,
   "devices": ["/dev/sda1"],
-  "map": ["media"],
-  "host_pid": true
+  "host_pid": true,
+  "mounts": [
+    "source=/media,target=/media,type=bind"
+  ]
 }
+
 
