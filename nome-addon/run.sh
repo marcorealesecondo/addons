@@ -1,18 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
-TARGET="/media/usb"
+USB_DEVICE="/dev/sda1"
+MOUNT_POINT="/media/usb"
 
-mkdir -p $TARGET
+mkdir -p $MOUNT_POINT
 
-echo "Mounting /dev/sda1 to $TARGET"
-mount /dev/sda1 $TARGET
-
-if [ $? -eq 0 ]; then
-  echo "USB mounted successfully."
-else
-  echo "Failed to mount USB."
+# Monta il dispositivo se non già montato
+if ! mountpoint -q $MOUNT_POINT; then
+  mount $USB_DEVICE $MOUNT_POINT
 fi
 
-# Keep container running so addon stays active
+# Mantieni il container attivo
 tail -f /dev/null
-
